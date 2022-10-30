@@ -70,7 +70,12 @@ const MainPage = () => {
   return (
     <MainPageWrapper>
       <VStack spacing={6} alignItems="stretch">
-        <HStack alignItems="center" justifyContent="space-between">
+        <HStack
+          alignItems="center"
+          justifyContent="space-between"
+          wrap={"wrap"}
+          rowGap={4}
+        >
           <HStack>
             <SearchInput
               onSearchTextChange={(query) =>
@@ -140,8 +145,10 @@ const MainPage = () => {
           <>
             {highlights?.length !== 0 && (
               <Grid
-                templateRows="repeat(2, 1fr)"
-                templateColumns="repeat(6, 1fr)"
+                templateColumns={{
+                  base: "repeat(1, 1fr)",
+                  lg: "repeat(6, 1fr)",
+                }}
                 gap={4}
               >
                 {highlights[0] && (
@@ -171,8 +178,11 @@ const MainPage = () => {
                 )}
               </Grid>
             )}
-
-            <VStack alignItems="stretch" spacing={6} px={"8rem"}>
+            <VStack
+              alignItems="stretch"
+              spacing={6}
+              px={{ base: "1rem", lg: "8rem" }}
+            >
               {list?.map((article, articleIndex) => (
                 <ArticleCard key={articleIndex} article={article} />
               ))}
